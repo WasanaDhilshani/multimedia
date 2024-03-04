@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wasu - personal portfolio</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
+    rel="stylesheet">
+
+    <title>Image Gallery with Slider</title>
+    <style>
+        .slider {
+			position: relative;
+			width: 100%;
+			max-width: 600px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+
+		.slider__container {
+			display: flex;
+			transition: transform 0.5s ease-in-out;
+            row-gap: 2rem;
+		}
+
+		.slider__item {
+			flex: 0 0 100%;
+			width: 100%;
+            border-radius: .5rem;
+		}
+
+		.fade_animation {
+			opacity: 0;
+		}
+        #background-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+    
+    }
+
+    </style>
+</head>
+<body>
+
+    
+
+    <video autoplay muted loop id="background-video">
+        <source src="bag.mp4" type="video/mp4">
+    </video>
+
+   <script>
+        // JavaScript for the slider
+        let currentGallery = 1; // Variable to track the current gallery
+    
+        function showGallery(galleryIndex) {
+            const galleries = document.querySelectorAll('.gallery-section');
+            if (galleryIndex > galleries.length) { currentGallery = 1; }
+            if (galleryIndex < 1) { currentGallery = galleries.length; }
+            for (let i = 0; i < galleries.length; i++) {
+                galleries[i].style.display = 'none';
+            }
+            galleries[currentGallery - 1].style.display = 'block';
+            currentSlide(currentGallery, 1); // Reset the slide to the first one for the new gallery
+        }
+    
+        function plusSlides(galleryIndex, n) {
+            const gallery = document.getElementById('gallery' + galleryIndex);
+            const slides = gallery.querySelectorAll('.slider__item');
+            let currentSlideNum = getCurrentSlideNum(galleryIndex);
+    
+            currentSlideNum += n;
+            if (currentSlideNum < 1) {
+                currentSlideNum = slides.length;
+            } else if (currentSlideNum > slides.length) {
+                currentSlideNum = 1;
+            }
+    
+            currentSlide(galleryIndex, currentSlideNum);
+        }
+    
+        function getCurrentSlideNum(galleryIndex) {
+            const gallery = document.getElementById('gallery' + galleryIndex);
+            const slides = gallery.querySelectorAll('.slider__item');
+            let currentSlideNum = 1;
+            for (let i = 0; i < slides.length; i++) {
+                if (slides[i].style.display === 'block') {
+                    currentSlideNum = i + 1;
+                    break;
+                }
+            }
+            return currentSlideNum;
+        }
+    
+        function currentSlide(galleryIndex, n) {
+            const gallery = document.getElementById('gallery' + galleryIndex);
+            const slides = gallery.querySelectorAll('.slider__item');
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slides[n - 1].style.display = 'block';
+        }
+    
+        // Initially show the first gallery
+        showGallery(currentGallery);//
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+    <section class="gallery-section slider" id="gallery1">
+        <h2 class="section-title">Graphic Design for Business</h2>
+        <div class="slider__container">
+            <!-- Slider items for Gallery 1 -->
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-11.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-12.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-14.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-15.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-16.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-20.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-25.png" alt="" width="100%" height="70%">
+            </div>
+            
+            <div class="slider__item">
+                <img src="assets/images/work/business/work-8.jpg" alt="" width="100%" height="80%">
+            </div>
+            
+            <!-- Add more images here if needed -->
+        </div>
+        <button class="slider__prev" onclick="plusSlides(1, -1)">&#10094;</button>
+        <button class="slider__next" onclick="plusSlides(1, 1)">&#10095;</button>
+    </section>
+
+    <section class="gallery-section slider" id="gallery2">
+        <h2 class="section-title">Graphic Designs For Invitations</h2>
+        <div class="slider__container">
+          <!-- Slider items for Gallery 2 -->
+          <div class="slider__item">
+            <img src="assets/images/work/creating/work-13.png" alt="" width="100%" height="100%">
+        </div>
+        <div class="slider__item">
+            <img src="assets/images/work/creating/work-17.png" alt="" width="100%" height="100%">
+        </div>
+        <div class="slider__item">
+            <img src="assets/images/work/creating/work-18.png" alt="" width="100%" height="100%">
+        </div>
+        <div class="slider__item">
+            <img src="assets/images/work/creating/work-19.png" alt="" width="100%" height="100%">
+        </div>
+        
+        <div class="slider__item">
+            <img src="assets/images/work/creating/work-26.png" alt="" width="100%" height="100%">
+        </div>
+        <div class="slider__item">
+            <img src="assets/images/work/creating/work-3.png" alt="" width="100%" height="100%">
+        </div>
+       
+        
+          <!-- Add more images here if needed -->
+        </div>
+        <button class="slider__prev" onclick="plusSlides(2, -1)">&#10094;</button>
+        <button class="slider__next" onclick="plusSlides(2, 1)">&#10095;</button>
+    </section>
+
+    <section class="gallery-section slider" id="gallery3">
+        <h2 class="section-title">Graphic Designs for </h2>
+        <div class="slider__container">
+            <!-- Slider items for Gallery 3 -->
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-10.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-21.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-22.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-23.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-5.jpg" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-24.png" alt="" width="100%" height="100%">
+            </div>
+            <div class="slider__item">
+                <img src="assets/images/work/Entertainment/work-9.png" alt="" width="100%" height="100%">
+            </div>
+            
+            <!-- Add more images here if needed -->
+        </div>
+        <button class="slider__prev" onclick="plusSlides(3, -1)">&#10094;</button>
+        <button class="slider__next" onclick="plusSlides(3, 1)">&#10095;</button>
+    </section>
+
+    <section class="gallery-section slider" id="gallery4">
+        <h2 class="section-title">Graphic Designs for T-shirt</h2>
+        <div class="slider__container">
+            <!-- Slider items for Gallery 4 -->
+            <div class="slider__item">
+                <video>
+                    <source src="assets/images/work/business/work-6.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+        </div>
+       
+    </section>
+
+    <section class="gallery-section slider" id="gallery5">
+        <h2 class="section-title">Gallery 5</h2>
+        <div class="slider__container">
+            <!-- Slider items for Gallery 5 -->
+            <div class="slider__item">
+                <video>
+                    <source src="assets/images/work/business/work-7.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- Add more images here if needed -->
+        </div>
+        
+    </section>
+    <div class="backbtn">
+        <a href="index.html" class="btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+      </a>
+      </div>
+
+    <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Add more gallery sections as needed -->
+
+</body>
+</html>
